@@ -1,0 +1,77 @@
+{
+  "note": "Source of truth for the five rolls. tools/prepare-photos.py reads this plus the original photos and writes assets/ and src/rolls.js. A roll with 'chapters' holds photographs, in this order; chapters are stretches of that roll, each opened by a title slot on the film. A roll with 'placeholder' is empty for now ('blank' = number of empty frames). 'border': the file has a black rounded border baked in, which is cropped off. 'pick': circled on the contact sheet. tz_shift_hours: camera clock minus local time ('tz' on a frame overrides it).",
+  "tz_shift_hours": -7,
+  "film": {"base": "#0b1526", "edge": "#9ec5ff"},
+  "rolls": [
+    {
+      "key": "r1", "stock": "ELEWEN 400", "name": ["Roll", "One"], "zh": "第一卷", "metal": "0x3f74c0", "metalness": 0.95, "roughness": 0.3, "accent": "#6aa5f2",
+      "blurb": "秀场正面、幕布后面、散场之后，还有拍完再画上去的几张。",
+      "chapters": [
+        {
+          "key": "overpaint", "series": "Overpaint", "title": "Mixed media", "zh": "手绘", "accent": "#79b4ff",
+          "blurb": "拍完再画。笔触、贴片和局部放大，直接盖在照片上。",
+          "frames": [
+            {"file": "IMG_8928.jpg", "title": "Blue Strokes", "zh": "蓝色笔触"},
+            {"file": "IMG_8937.jpg", "title": "Yellow Burst", "zh": "黄色放射"},
+            {"file": "IMG_8941.jpg", "title": "Painted Torso", "zh": "蓝染"}
+          ]
+        },
+        {
+          "key": "runway", "series": "Runway", "title": "Look after look", "zh": "秀场", "accent": "#6aa5f2",
+          "blurb": "蓝色顶棚下的十五分钟。长焦，正面，一个造型接一个造型。",
+          "frames": [
+            {"file": "095A5213.jpg", "title": "Pink Mesh", "zh": "粉色网眼", "border": true, "pick": true},
+            {"file": "095A5296 2.jpg", "title": "Orange Biker", "zh": "橙色机车夹克", "border": true, "pick": true},
+            {"file": "095A5311.jpg", "title": "White Bomber", "zh": "白色飞行夹克", "border": true},
+            {"file": "095A5421.jpg", "title": "Red Patent", "zh": "红色漆皮", "border": true, "pick": true},
+            {"file": "095A5539-2.jpg", "title": "Liquid Silver", "zh": "液态银", "border": true},
+            {"file": "095A5347.JPG", "title": "Lace Hood", "zh": "蕾丝兜帽"}
+          ]
+        },
+        {
+          "key": "velvet", "series": "Velvet", "title": "Behind the curtain", "zh": "幕布", "accent": "#8fc0ff",
+          "blurb": "红丝绒、吊灯和第一排。离开伸展台之后，衣服才开始有体温。",
+          "frames": [
+            {"file": "095A6191.jpg", "title": "Patchwork Leather", "zh": "拼皮夹克", "pick": true},
+            {"file": "095A5724.jpg", "title": "Two in Sequins", "zh": "两件亮片"},
+            {"file": "095A6685.JPG", "title": "Coral & Olive", "zh": "珊瑚与橄榄绿"},
+            {"file": "IMG_6103.jpg", "title": "Chandelier", "zh": "吊灯"},
+            {"file": "095A4613.JPG", "title": "Polka Silk", "zh": "波点丝绸"}
+          ]
+        },
+        {
+          "key": "nocturne", "series": "Nocturne", "title": "After dark", "zh": "入夜", "accent": "#4f8ae0",
+          "blurb": "散场以后的人。一盏灯，一张脸，其余都交给黑。",
+          "frames": [
+            {"file": "095A5093.jpg", "title": "Red Lip", "zh": "红唇", "pick": true},
+            {"file": "095A4989.jpg", "title": "Amber Lenses", "zh": "琥珀镜片", "pick": true},
+            {"file": "095A4697.jpg", "title": "Tuning Up", "zh": "调弦"},
+            {"file": "095A6610.jpg", "title": "Kiss Curl", "zh": "额前一卷"}
+          ]
+        },
+        {
+          "key": "halide", "series": "Halide", "title": "Cold light", "zh": "冷光", "accent": "#a9c9f5",
+          "blurb": "两张黑白，一面蓝墙。颜色退下去，轮廓就站出来。",
+          "frames": [
+            {"file": "095A4834.jpg", "title": "Silver Profile", "zh": "银色侧脸", "pick": true},
+            {"file": "095A4881.jpg", "title": "Blue Container", "zh": "蓝色集装箱", "pick": true},
+            {"file": "095A6019.jpg", "title": "Marble & Ink", "zh": "大理石与刺青"}
+          ]
+        },
+        {
+          "key": "echo", "series": "Echo", "title": "Earlier this year", "zh": "回声", "accent": "#5a96ea",
+          "blurb": "二月的三张：两张黑白，一张把人影拖成了光。",
+          "frames": [
+            {"file": "J97A9726_SnapseedCopy.jpg", "title": "Utility Jacket", "zh": "工装外套", "tz": 0},
+            {"file": "J97A9935_SnapseedCopy.jpg", "title": "Rose Print", "zh": "玫瑰印花", "tz": 0},
+            {"file": "J97A0004_SnapseedCopy.jpg", "title": "Light Trails", "zh": "光轨", "tz": 0}
+          ]
+        }
+      ]
+    },
+    {"key": "r2", "placeholder": true, "blank": 8, "stock": "ELEWEN 400", "name": ["Roll", "Two"], "zh": "第二卷", "metal": "0x2f5fa8", "metalness": 0.95, "roughness": 0.32, "accent": "#8fc0ff", "blurb": "这一卷还没装片。"},
+    {"key": "r3", "placeholder": true, "blank": 8, "stock": "ELEWEN 400", "name": ["Roll", "Three"], "zh": "第三卷", "metal": "0x5b8fd6", "metalness": 0.95, "roughness": 0.28, "accent": "#4f8ae0", "blurb": "这一卷还没装片。"},
+    {"key": "r4", "placeholder": true, "blank": 8, "stock": "ELEWEN 400", "name": ["Roll", "Four"], "zh": "第四卷", "metal": "0x244a86", "metalness": 0.95, "roughness": 0.34, "accent": "#a9c9f5", "blurb": "这一卷还没装片。"},
+    {"key": "r5", "placeholder": true, "blank": 8, "stock": "ELEWEN 400", "name": ["Roll", "Five"], "zh": "第五卷", "metal": "0x7fa8e0", "metalness": 0.95, "roughness": 0.26, "accent": "#5a96ea", "blurb": "这一卷还没装片。"}
+  ]
+}
