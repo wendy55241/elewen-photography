@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN" data-motion="full" class="at-home">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EleWen Photography</title>
+<meta name="description" content="EleWen Photography：五卷 35 mm 胶片，第一卷已经装满。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='3' y='2' width='3.4' height='12' fill='%236aa5f2'/%3E%3Crect x='9.6' y='2' width='3.4' height='12' fill='%23cfe6ff'/%3E%3C/svg%3E">
+<script>
+  // Before first paint: which presentation (?v=orbit | pages, default orbit; the switches in the page link to these), which
+  // layout (phone = portrait or <= 640 px wide; ?layout=mobile|desktop overrides), and whether the home page is up.
+  (function () {
+    var q = new URLSearchParams(location.search), d = document.documentElement;
+    d.dataset.variant = (q.get('v') || window.__VARIANT) === 'pages' ? 'pages' : 'orbit';
+    var m = q.get('layout') || window.__FILM_LAYOUT || (matchMedia('(max-aspect-ratio: 4/5), (max-width: 640px)').matches ? 'mobile' : 'desktop'); window.__FILM_LAYOUT = m; d.dataset.layout = m;
+    if (q.get('home') === '0') d.classList.remove('at-home');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Manrope:wght@400;600;700&family=Noto+Serif+SC:wght@400;500&display=swap">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+<!-- Home: where HTML-in-Canvas is available, .home-dom is moved inside .home-cv and drawn by it (src/home.js). -->
+<div class="home" role="dialog" aria-label="Welcome to EleWen Photography">
+  <div class="home-dom">
+    <div class="h-metal" aria-hidden="true"></div>
+    <div class="h-eleven" aria-hidden="true"><b>1</b><b>1</b></div>
+    <div class="h-orbits" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <ol class="h-pages" aria-hidden="true"><li>01</li><li>02</li><li>03</li><li>04</li><li>05</li></ol>
+    <div class="h-copy">
+      <p class="h-kicker">Welcome to</p>
+      <h1 class="h-name"><span class="h-ele"><i>Ele</i><i>Wen</i></span> <span class="h-photo">Photography</span></h1>
+      <p class="h-sub">五卷 35 mm 胶片 · 一卷已经装满</p>
+    </div>
+    <p class="h-enter"><b>Enter</b><span>点击，或向下滚动</span><i aria-hidden="true"></i></p>
+    <p class="h-corner h-tl">EleWen · 11</p>
+    <p class="h-corner h-tr">Photography · Est. 2026</p>
+  </div>
+  <canvas class="home-cv" aria-hidden="true"></canvas>
+  <nav class="h-switch" aria-label="效果切换"><a href="?v=orbit" data-v="orbit">效果 1 · 五卷同页</a><a href="?v=pages" data-v="pages">效果 2 · 一卷一页</a></nav>
+</div>
+
+<main>
+  <section id="hero" class="hero" aria-label="五卷胶片">
+    <div class="stage">
+      <div class="ambient" aria-hidden="true"><i></i><i></i></div>
+      <div class="title" aria-hidden="true"><span><i></i><i></i></span><span><i></i><i></i></span></div>
+      <canvas id="gl" aria-label="五个胶卷暗盒；把居中那一卷的胶片拉出来"></canvas>
+      <div class="glow" aria-hidden="true"></div>
+      <div class="veil" aria-hidden="true"></div>
+      <p class="loading" aria-live="polite">装片中</p>
+
+      <header class="top">
+        <a class="mark" href="#home" title="回到首页"><i>EleWen</i><span>Photography · 11</span></a>
+        <nav class="nav" aria-label="页面"><a href="#sheet">印样</a><a href="#selects">精选</a><a href="#about">关于</a><a href="#contact">约拍</a></nav>
+        <div class="switches">
+          <a class="variant" data-v="pages" href="?v=pages">效果 2</a>
+          <a class="variant" data-v="orbit" href="?v=orbit">效果 1</a>
+          <button type="button" class="sound" aria-pressed="false">声音 <b>关</b></button>
+          <button type="button" class="motion" aria-pressed="true">动效 <b>全</b></button>
+          <button type="button" class="index-btn" aria-expanded="false">目录</button>
+        </div>
+      </header>
+
+      <!-- The roll at the centre (at rest). -->
+      <div class="card" aria-live="polite">
+        <span class="idx"><b class="num">01</b><span class="of">/ 05</span></span>
+        <h2 class="stock"></h2>
+        <p class="series"></p>
+        <p class="meta"></p>
+        <p class="blurb"></p>
+      </div>
+      <!-- The chapter passing the screen (while film is out). -->
+      <div class="chap" aria-live="polite">
+        <span class="idx"><b class="num">01</b><span class="of">/ 06</span></span>
+        <h2 class="stock"></h2>
+        <p class="series"></p>
+        <p class="meta"></p>
+      </div>
+      <p class="note"></p>
+
+      <nav class="rail" aria-label="胶卷 / 段落"></nav>
+      <nav class="pager" aria-label="分页：选择胶卷"></nav>
+
+      <p class="hint"><span><kbd>滚动</kbd>换卷</span><span><kbd>横拖</kbd>拉出胶片</span><span><kbd>点帧</kbd>放大</span></p>
+      <div class="tag" aria-hidden="true"><span>拉</span><svg viewBox="0 0 24 10" width="22"><path d="M0 5h20M15 1l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
+      <p class="frame-cap" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <div class="after">
+    <button type="button" class="sheet-close">关闭</button>
+
+    <section class="sec empty-note" aria-label="这一卷还没装片">
+      <header class="sec-head">
+        <span class="kicker">Unexposed</span>
+        <h2>待装片</h2>
+        <p class="lede">这一卷还是空的。等拍满了，印样和精选会出现在这里。</p>
+      </header>
+    </section>
+
+    <section id="sheet" class="sec" aria-labelledby="sheet-h">
+      <header class="sec-head reveal">
+        <span class="kicker">01 — Contact Sheet</span>
+        <h2 id="sheet-h">印样</h2>
+        <p class="lede">第一卷 <span data-count="frames">24</span> 帧，裁成 <span data-count="chapters">6</span> 条，一条一段。竖拍的是半格，横拍的是全格。圈出来的是留下的 <span data-count="picks">8</span> 张。点任意一帧放大。</p>
+      </header>
+      <div class="sheets"></div>
+    </section>
+
+    <section id="selects" class="sec" aria-labelledby="selects-h">
+      <header class="sec-head reveal">
+        <span class="kicker">02 — Selects</span>
+        <h2 id="selects-h">精选</h2>
+        <p class="lede">从印样上圈出来的几张，放大到它们该有的尺寸。</p>
+      </header>
+
+      <article class="spread full reveal">
+        <button type="button" class="ph" data-ref="velvet:1"></button>
+        <div class="words"><span class="kicker">Velvet · 幕布</span><h3>Behind<br><em>the curtain</em></h3><p>离开伸展台之后，衣服才开始有体温。红丝绒吃掉了所有杂光，只剩一道侧光落在脸上。</p></div>
+      </article>
+
+      <article class="spread duo reveal">
+        <div class="words"><span class="kicker">Nocturne · 入夜</span><h3>After dark,<br><em>two faces</em></h3><p>散场以后，一盏灯只够照亮一张脸。其余都交给黑。</p></div>
+        <button type="button" class="ph" data-ref="nocturne:1"></button>
+        <button type="button" class="ph drop" data-ref="nocturne:2"></button>
+      </article>
+
+      <article class="spread trio reveal">
+        <div class="words"><span class="kicker">Runway · 秀场</span><h3>Look<br><em>after look</em></h3><p>粉、橙、红。十五分钟里，颜色一格一格地升温。</p></div>
+        <button type="button" class="ph" data-ref="runway:1"></button>
+        <button type="button" class="ph drop" data-ref="runway:2"></button>
+        <button type="button" class="ph" data-ref="runway:4"></button>
+      </article>
+
+      <article class="spread pair reveal">
+        <button type="button" class="ph wide" data-ref="halide:2"></button>
+        <button type="button" class="ph" data-ref="halide:1"></button>
+        <div class="words"><span class="kicker">Halide · 冷光</span><h3>Cold<br><em>light</em></h3><p>颜色退下去，轮廓就站出来。一面蓝墙，一张银色的侧脸。</p></div>
+      </article>
+    </section>
+
+    <section id="about" class="sec about" aria-labelledby="about-h">
+      <div class="statement reveal">
+        <span class="kicker">03 — About</span>
+        <h2 id="about-h">EleWen，<br><em>十一。</em></h2>
+      </div>
+      <div class="facts reveal">
+        <p>EleWen Photography 把作品装在胶卷里看：<span data-count="rolls">5</span> 卷，第一卷已经装满 <span data-count="frames">24</span> 帧——秀场正面、幕布后面、散场之后，还有拍完再画上去的几张。另外 <span data-count="empty">4</span> 卷还空着，等下一次出门。</p>
+        <dl>
+          <div><dt>第一卷</dt><dd>2026.02 · 2026.09.17 — 09.21</dd></div>
+          <div><dt>机身</dt><dd>Canon EOS R6 Mark III · R6 Mark II</dd></div>
+          <div><dt>镜头</dt><dd>RF 50mm F1.8 · RF 100–400mm F5.6–8</dd></div>
+          <div><dt>接拍</dt><dd>秀场 · 后台 · 人像 · 画册</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <footer id="contact" class="contact reveal">
+      <span class="kicker">04 — Contact</span>
+      <a class="cta" href="mailto:hello@example.com"><span>下一卷，</span><em>拍你的。</em></a>
+      <div class="foot">
+        <a href="mailto:hello@example.com">hello@example.com</a>
+        <span>EleWen Photography · 秀场 · 后台 · 人像</span>
+        <a href="#hero" class="mark-link">回到胶卷 ↑</a>
+      </div>
+    </footer>
+  </div>
+</main>
+
+<div class="lb" hidden role="dialog" aria-label="放大的底片">
+  <figure><img alt=""><figcaption><b class="no"></b><span class="t"></span><span class="z"></span><em class="s"></em></figcaption></figure>
+  <button type="button" class="lb-nav prev" data-d="-1" aria-label="上一帧">‹</button>
+  <button type="button" class="lb-nav next" data-d="1" aria-label="下一帧">›</button>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

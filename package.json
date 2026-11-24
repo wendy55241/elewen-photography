@@ -1,0 +1,9 @@
+{
+  "name": "elewen-photography",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "node tools/serve.mjs",
+    "build": "node tools/build-standalone.mjs"
+  }
+}
